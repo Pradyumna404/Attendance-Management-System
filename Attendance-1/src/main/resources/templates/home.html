@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Home Attendance</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Raleway:400,700');
+
+        *, *:before, *:after {
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: 'Raleway', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f2f2f2;
+            margin: 0;
+        }
+
+        .container {
+            position: relative;
+            width: 400px;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        form div {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            border: none;
+            border-radius: 4px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            text-decoration: none;
+            color: #4CAF50;
+            font-weight: bold;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        div p {
+            margin: 10px 0;
+        }
+
+        .popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            text-align: center;
+            display: none;
+        }
+
+        .popup button {
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #4CAF50;
+            border: none;
+            border-radius: 4px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .popup button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Welcome, <span th:text="${username}"></span>!</h2>
+        <div>
+            <p><span th:text="${#dates.format(#dates.createNow(), 'yyyy-MM-dd')}"></span></p>
+            <p><span th:text="${#dates.format(#dates.createNow(), 'hh:mm:ss a')}"></span></p>
+        </div>
+        <div th:if="${!signedIn}">
+            <form action="/sign-in" method="post">
+                <button type="submit">Sign In</button>
+            </form>
+        </div>
+
+        <div th:if="${signedIn}">
+            <form action="/sign-out" method="post">
+                <button type="submit">Sign Out</button>
+            </form>
+        </div>
+
+        <a href="/user-report">View Report</a>
+    </div>
+
+    <div class="popup" id="errorPopup" th:if="${errorMessage}">
+        <p th:text="${errorMessage}"></p>
+        <button onclick="closePopup()">Close</button>
+    </div>
+
+    <script>
+        function closePopup() {
+            document.getElementById('errorPopup').style.display = 'none';
+        }
+
+        window.onload = function() {
+            if (document.getElementById('errorPopup')) {
+                document.getElementById('errorPopup').style.display = 'block';
+            }
+        }
+    </script>
+</body>
+</html>
+

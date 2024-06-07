@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>User Attendance Report</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Raleway:400,700');
+
+        *, *:before, *:after {
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: 'Raleway', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f2f2f2;
+            margin: 0;
+        }
+
+        .container {
+            position: relative;
+            width: 400px;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        form div {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+        }
+
+        input[type="submit"]{
+
+        
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            border: none;
+            border-radius: 4px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Attendance Report for <span th:text="${username}"></span></h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Sign In Time</th>
+                    <th>Sign Out Time</th>
+                    <th>Absent</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="attendance : ${attendances}">
+                    <td th:text="${attendance.date}"></td>
+                    <td th:text="${attendance.signInTime}"></td>
+                    <td th:text="${attendance.signOutTime}"></td>
+                    <td th:text="${attendance.absent ? 'Yes' : 'No'}"></td>
+                </tr>
+            </tbody>
+        </table>
+        <br>
+        <form action="/logout3" method="post">
+            <input type="submit" value="Logout" name="t1">
+        </form>
+    </div>
+</body>
+</html>
