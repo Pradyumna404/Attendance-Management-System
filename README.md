@@ -63,19 +63,19 @@ The Attendance App is a web application developed with Spring Boot and Thymeleaf
 
 ## Usage
 
--User Login: Use the login page to access the app.
--Register: New users can register and start using the app immediately.
--Attendance Management: Sign in and sign out daily, and view your attendance history.
--Admin Access: Log in with admin credentials to view all users' attendance.
+- User Login: Use the login page to access the app.
+- Register: New users can register and start using the app immediately.
+- Attendance Management: Sign in and sign out daily, and view your attendance history.
+- Admin Access: Log in with admin credentials to view all users' attendance.
 
 ## Future Enhancements
 
--Role-based access control improvements.
--Email notifications for attendance reminders.
--Data export options (e.g., CSV, PDF).
+- Role-based access control improvements.
+- Email notifications for attendance reminders.
+- Data export options (e.g., CSV, PDF).
 
 ## Contact
 
-Author: Pradyumna Nalawade
-GitHub: Pradyumna404
-Email: pnalawade404@gmail.com
+- Author: Pradyumna Nalawade
+- GitHub: Pradyumna404
+- Email: pnalawade404@gmail.com
